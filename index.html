@@ -1,0 +1,42 @@
+<!-- Assumptions 
+	1 - jQuery is included
+	2 - bootstrap style is included. '.alert' below is a bootsctrap class 
+-->
+
+<!-- JS -->
+<script>
+	var alert_timeout; //Store the setTimeout function call so we can clear it if we need to. This is need if Alert() is called quickly in succession.
+
+	//Slide Down alert panel
+	function Alert(txt){
+		var position = $(window).scrollTop() + 'px';
+		
+		//In case it already exists
+		clearTimeout(alert_timeout);
+		
+		//$('#alert_container .alert').html(txt).parent().css({'marginTop':'0px'});
+		$('#alert_container .alert').html(txt).parent().css({'marginTop': position});
+		//Close after 3 seconds
+		alert_timeout = setTimeout(function(){
+			$('#alert_container').css({'marginTop':'-300px'});
+		},4000);
+	}
+
+	function AlertLoading(txt){
+		var position = $(window).scrollTop() + 'px';
+		$('#alert_container .alert').html('<i class="icon-spinner icon-spin icon-large"></i><i>&nbsp;&nbsp;' + txt + '</i>').parent().css({'marginTop': position});
+	}
+</script>
+
+<!-- CSS -->
+<style>
+	div#alert_container{position:absolute; width: 100%; top: 5px; z-index: 1000; transition:all 0.5s; margin-top:-300px}
+	div#alert_container .alert{width: 500px; margin: 0px auto; box-shadow: 0px 3px 16px -2px #555555;}
+</style>
+
+<!-- HTML -->
+<div id="alert_container">
+	<div class="alert alert-success">
+		<!-- Populated by JS function above -->
+	</div>
+</div>
