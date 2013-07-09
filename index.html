@@ -1,6 +1,6 @@
-<!-- Assumptions 
+<!-- Assumptions
 	1 - jQuery is included
-	2 - bootstrap style is included. '.alert' below is a bootsctrap class 
+	2 - bootstrap style is included. '.alert' below is a bootsctrap class
 -->
 
 <!-- JS -->
@@ -9,28 +9,29 @@
 
 	//Slide Down alert panel
 	function Alert(txt){
-		var position = $(window).scrollTop() + 'px';
-		
 		//In case it already exists
 		clearTimeout(alert_timeout);
-		
+
 		//$('#alert_container .alert').html(txt).parent().css({'marginTop':'0px'});
-		$('#alert_container .alert').html(txt).parent().css({'marginTop': position});
-		//Close after 3 seconds
+		$('#alert_container .alert').html(txt).parent().css({'marginTop': '0px'});
+		//Close after XX seconds
 		alert_timeout = setTimeout(function(){
-			$('#alert_container').css({'marginTop':'-300px'});
-		},4000);
+			$('#alert_container').css({'marginTop':'-80px'});
+		}, 4000);
+
+
+		//Example usage
+		//Alert('<i class="icon-thumbs-up"></i> That worked!!');
 	}
 
 	function AlertLoading(txt){
-		var position = $(window).scrollTop() + 'px';
-		$('#alert_container .alert').html('<i class="icon-spinner icon-spin icon-large"></i><i>&nbsp;&nbsp;' + txt + '</i>').parent().css({'marginTop': position});
+		$('#alert_container .alert').html('<i class="icon-spinner icon-spin icon-large"></i><i>&nbsp;&nbsp;' + txt + '</i>').parent().css({'marginTop': '0px'});
 	}
 </script>
 
 <!-- CSS -->
 <style>
-	div#alert_container{position:absolute; width: 100%; top: 5px; z-index: 1000; transition:all 0.5s; margin-top:-300px}
+	div#alert_container{position: fixed; width: 100%; top: 1%; z-index: 1000; transition: all 0.5s; margin-top:-80px;}
 	div#alert_container .alert{width: 500px; margin: 0px auto; box-shadow: 0px 3px 16px -2px #555555;}
 </style>
 
