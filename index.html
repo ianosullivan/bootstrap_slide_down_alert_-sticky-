@@ -16,7 +16,7 @@
 		$('#alert_container .alert').html(txt).parent().css({'marginTop': '0px'});
 		//Close after XX seconds
 		alert_timeout = setTimeout(function(){
-			$('#alert_container').css({'marginTop':'-80px'});
+			AlertHide();
 		}, 4000);
 
 
@@ -27,6 +27,10 @@
 	function AlertLoading(txt){
 		$('#alert_container .alert').html('<i class="icon-spinner icon-spin icon-large"></i><i>&nbsp;&nbsp;' + txt + '</i>').parent().css({'marginTop': '0px'});
 	}
+	
+	function AlertHide(){
+		$('#alert_container').css({'marginTop':'-80px'});
+	}	
 </script>
 
 <!-- CSS -->
