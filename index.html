@@ -5,6 +5,11 @@
 
 <!-- JS -->
 <script>
+	
+	//Append the HTML that is used below
+	$('body').append('<div id="alert_container"><span class="alert alert-success"></span></div><div id="alert_container_loader"></div>');
+
+
 	var alert_timeout; //Store the setTimeout function call so we can clear it if we need to. This is need if Alert() is called quickly in succession.
 
 	//Slide Down alert panel
@@ -25,8 +30,14 @@
 	}
 
 	function AlertLoading(txt){
-		$('#alert_container .alert').html('<i class="icon-spinner icon-spin icon-large"></i><i>&nbsp;&nbsp;' + txt + '</i>').parent().css({'marginTop': '0px'});
-	}
+		$('#alert_container_loader').fadeIn('fast');
+		if(txt != undefined){		
+			$('#alert_container .alert').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;' + txt).parent().css({'marginTop': '0px'});
+		}
+		else {
+			$('#alert_container .alert').html('<i class="fa fa-spinner fa-spin"></i>&nbsp;&nbsp;Loading...').parent().css({'marginTop': '0px'});		
+		}
+	} 
 	
 	function AlertHide(){
 		$('#alert_container').css({'marginTop':'-80px'});
@@ -35,13 +46,19 @@
 
 <!-- CSS -->
 <style>
-	div#alert_container{position: fixed; width: 100%; top: 1.5%; z-index: 1000; transition: all 0.5s; -webkit-transition: all 0.5s; -o-transition: all 0.5s; -moz-transition: all 0.5s; margin-top:-80px; pointer-events:none; text-align:center;}
-	div#alert_container .alert{padding:7px 12px; box-shadow: 0px 3px 16px -2px #555555;}
+	div#alert_container{position: fixed; width: 100%; top: 1.5%; z-index: 2002; transition: all 0.1s; margin-top:-80px; pointer-events:none; text-align:center;}
+	div#alert_container .alert{padding:7px 12px; box-shadow: 0px 3px 16px -2px #555555; display:inline-block;}
+	div#alert_container_loader{
+		position:fixed; width:100%; height:100%; top:0px; bottom:0px; left:0px; right:0px; z-index: 1001; display:none; 
+		/*background-color:rgba(100,100,100,0.5);*/
+		/* Radial background...  */
+		background: -moz-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 85%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+		background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(0,0,0,0)), color-stop(85%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+		background: -webkit-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 85%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+		background: -o-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 85%,rgba(0,0,0,0.65) 100%); /* Opera 12+ */
+		background: -ms-radial-gradient(center, ellipse cover,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 85%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+		background: radial-gradient(ellipse at center,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 85%,rgba(0,0,0,0.65) 100%); /* W3C */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+	}
 </style>
 
-<!-- HTML -->
-<div id="alert_container">
-	<span class="alert alert-success">
-		<!-- Populated by JS function above -->
-	</span>
-</div>
