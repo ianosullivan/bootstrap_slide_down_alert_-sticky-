@@ -5,10 +5,10 @@
 
 <!-- JS -->
 <script>
-	
-	//Append the HTML that is used below
-	$('body').append('<div id="alert_container"><span class="alert alert-success"></span></div><div id="alert_container_loader"></div>');
-
+	$(function(){	
+		//Append the HTML that is used below
+		$('body').append('<div id="alert_container"><span class="alert alert-success"></span></div><div id="alert_container_loader"></div>');
+	});
 
 	var alert_timeout; //Store the setTimeout function call so we can clear it if we need to. This is need if Alert() is called quickly in succession.
 
